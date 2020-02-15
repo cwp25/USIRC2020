@@ -1,4 +1,4 @@
-//Version 0.9
+//Version 1.0
 #include "course_control.h"
 
 void setup() 
@@ -21,6 +21,11 @@ void setup()
   pinMode(STRLED, OUTPUT);
   pinMode(R0LED, OUTPUT);
   pinMode(R1LED, OUTPUT);
+  digitalWrite(R0LED, HIGH);
+  digitalWrite(R1LED, HIGH);
+  digitalWrite(B0LED, HIGH);
+  digitalWrite(B1LED, HIGH);
+  digitalWrite(STRLED, HIGH);
   
   Serial.begin(9600);
 }
@@ -33,13 +38,14 @@ void loop()
   B = 0;//reset values to off
   colorChangeBoth(0,0,0); //turn LEDs off to begin
   //random fun patterns between rounds, ie before start button pressed
-  long timeStamp = millis(); //timestamp for prematch light stuff
+  unsigned long timeStamp = millis(); //timestamp for prematch light stuff
   int color = 0; //for color switcher
-  while(digitalRead(STRBUTT)) //while start button not pressed
+  while((digitalRead(STRBUTT)) == HIGH) //while start button not pressed
   {
     //rainbow(&reddir,&greendir,&bluedir);
     if((millis() - timeStamp)>2000)
     {
+      timeStamp = millis();
       switch(color)
       {
         case 0: //turn on red
@@ -207,6 +213,7 @@ bool debounce(int current, int *state, int *last, unsigned long *lasttime)
       }
     }
   }
+  *last = current;
   return false; //button not pressed, or not currently pressed
 }
 
@@ -335,13 +342,13 @@ void resetvalues()
   successOne = false;
   zerostayoff = false;
   onestayoff = false;
-  int reddir = 0;
-  int greendir = 0;
-  int bluedir = 0;
-  int r0last = HIGH;
-  int b0last = HIGH;
-  int r1last = HIGH;
-  int b1last = HIGH;
+  reddir = 0;
+  greendir = 0;
+  bluedir = 0;
+  r0last = HIGH;
+  b0last = HIGH;
+  r1last = HIGH;
+  b1last = HIGH;
   r0lastDebounceTime = 0;
   b0lastDebounceTime = 0;
   r1lastDebounceTime = 0;

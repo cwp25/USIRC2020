@@ -1,12 +1,12 @@
-//Version 0.9
+//Version 1.0
 #define RS0 5
 #define BS0 3
 #define GS0 6
 #define RS1 10
 #define BS1 9
 #define GS1 11
-#define B1LED 0
-#define B1BUTT 1
+#define B1LED A4
+#define B1BUTT A5
 #define R1LED 2
 #define R1BUTT 4
 #define STRLED 7
@@ -15,7 +15,7 @@
 #define R0BUTT A1
 #define B0LED A2
 #define B0BUTT A3
-#define ROUNDTIME 3L*60L*1000
+#define ROUNDTIME 1L*30L*1000
 #define RED 0
 #define BLUE 1
 unsigned long debounceDelay = 50; //buttons must be pressed for 50 ms
