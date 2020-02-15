@@ -65,7 +65,7 @@ void loop()
   } //comp start from button press
   
   colorChangeBoth(0,0,0); //lights off
-  delay(3000);             //for three seconds
+  delay(1000);             //for three seconds
   onesecfade();           //3
   onesecfade();           //2
   onesecfade();           //1
