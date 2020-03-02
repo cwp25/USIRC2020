@@ -5,8 +5,8 @@
 #define RS1 10
 #define BS1 9
 #define GS1 11
-#define B1LED A4
-#define B1BUTT A5
+#define B1LED 12
+#define B1BUTT 13
 #define R1LED 2
 #define R1BUTT 4
 #define STRLED 7
@@ -38,6 +38,7 @@ int greendir = 0;
 int bluedir = 0;
 
 int r0state, b0state, r1state, b1state;
+
 int r0last = HIGH;
 int b0last = HIGH;
 int r1last = HIGH;

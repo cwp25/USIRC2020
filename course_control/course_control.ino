@@ -65,7 +65,7 @@ void loop()
   } //comp start from button press
   
   colorChangeBoth(0,0,0); //lights off
-  delay(1000);             //for three seconds
+  delay(1000);             //for one second
   onesecfade();           //3
   onesecfade();           //2
   onesecfade();           //1
@@ -139,7 +139,7 @@ void loop()
 
 int redorblue(int side)
 {
-  randomSeed(analogRead(0)); //set randomization seed based on noise from A0 (unconnected)
+  randomSeed(analogRead(A5)); //set randomization seed based on noise from 
   randNumber = random(9002); //generate a random number 0-over 9000
 
   if(randNumber % 2) //if even, change to blue (well, cyan)
@@ -217,7 +217,7 @@ bool debounce(int current, int *state, int *last, unsigned long *lasttime)
   return false; //button not pressed, or not currently pressed
 }
 
-int resolveButtons(int side, int sidecolor, bool RedPressed, bool BluePressed)
+void resolveButtons(int side, int sidecolor, bool RedPressed, bool BluePressed)
 {
   if(!(RedPressed||BluePressed)) //if nothing pressed, do nothing
   {
