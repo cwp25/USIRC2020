@@ -28,6 +28,10 @@ unsigned long Oneposttimer;
 unsigned long Zeroposttimer;
 bool zerostayoff = false;
 bool onestayoff = false;
+unsigned long starttimepressed;
+bool startpushed = false;
+bool startround = false;
+unsigned long testenter;
 
 int R, G, B;
 unsigned long randNumber;

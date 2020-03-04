@@ -40,9 +40,8 @@ void loop()
   //random fun patterns between rounds, ie before start button pressed
   unsigned long timeStamp = millis(); //timestamp for prematch light stuff
   int color = 0; //for color switcher
-  while((digitalRead(STRBUTT)) == HIGH) //while start button not pressed
+  while(digitalRead(STRBUTT) == HIGH) 
   {
-    //rainbow(&reddir,&greendir,&bluedir);
     if((millis() - timeStamp)>2000)
     {
       timeStamp = millis();
@@ -63,9 +62,22 @@ void loop()
       }
     }
   } //comp start from button press
+  starttimepressed = millis();
+  while((millis() - starttimepressed) < 3000)
+  {
+    if(digitalRead(STRBUTT) == HIGH)
+    {
+      break;
+    }
+    if((millis() - starttimepressed) > 2500)
+    {
+      buttoncolortest();
+    }
+    delay(10);
+  }
   
   colorChangeBoth(0,0,0); //lights off
-  delay(1000);             //for one second
+  delay(1000);
   onesecfade();           //3
   onesecfade();           //2
   onesecfade();           //1
@@ -336,6 +348,8 @@ void rainbow(int *rdir, int *gdir, int *bdir)
 
 void resetvalues()
 {
+  bool startpushed = false;
+  bool startround = false;
   triggeredZero = false;
   triggeredOne = false;
   successZero = false;
@@ -357,4 +371,37 @@ void resetvalues()
   R1Pressed = false;
   B0Pressed = false;
   B1Pressed = false;
+}
+
+void buttoncolortest()
+{
+  testenter = millis();
+  colorChangeBoth(0,0,0);
+  while(1)
+  {
+    if(digitalRead(STRBUTT) == LOW)
+    {
+      if((millis() - testenter) > 3000)
+      {
+        loop();
+      }
+    }
+    if(digitalRead(B0BUTT) == LOW)
+    {
+      colorChange(0, 0, 255, 255);
+    }
+    if(digitalRead(R0BUTT) == LOW)
+    {
+      colorChange(0, 255, 0, 0);
+    }
+    if(digitalRead(B1BUTT) == LOW)
+    {
+      colorChange(1, 0, 255, 255);
+    }
+    if(digitalRead(R1BUTT) == LOW)
+    {
+      colorChange(1, 255, 0, 0);
+    }
+  }
+  
 }
