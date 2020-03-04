@@ -36,10 +36,11 @@ void loop()
   R = 1; //1 to start rainbow
   G = 0;
   B = 0;//reset values to off
-  colorChangeBoth(0,0,0); //turn LEDs off to begin
+  colorChangeBoth(255,0,0); //turn LEDs off to begin
+  delay(2000);
   //random fun patterns between rounds, ie before start button pressed
   unsigned long timeStamp = millis(); //timestamp for prematch light stuff
-  int color = 0; //for color switcher
+  int color = 1; //for color switcher
   while(digitalRead(STRBUTT) == HIGH) 
   {
     if((millis() - timeStamp)>2000)
@@ -48,7 +49,7 @@ void loop()
       switch(color)
       {
         case 0: //turn on red
-          colorChangeBoth(255,0,0);
+          colorChangeBoth(255, 0, 0);
           color = 1;
           break;
         case 1: //turn on green
@@ -149,6 +150,13 @@ void loop()
   delay(10000);
 }
 
+void randomcolors()
+{
+  randomSeed(analogRead(4));
+  colorChange(0,random(255), random(255), random(255));
+  randomSeed(analogRead(5));
+  colorChange(1, random(255), random(255), random(255));
+}
 int redorblue(int side)
 {
   randomSeed(analogRead(A5)); //set randomization seed based on noise from 
