@@ -396,7 +396,7 @@ void buttoncolortest()
     }
     if(digitalRead(B0BUTT) == LOW)
     {
-      colorChange(0, 0, 255, 255);
+      colorChange(0, 0, 0, 255);
     }
     if(digitalRead(R0BUTT) == LOW)
     {
@@ -404,7 +404,7 @@ void buttoncolortest()
     }
     if(digitalRead(B1BUTT) == LOW)
     {
-      colorChange(1, 0, 255, 255);
+      colorChange(1, 0, 0, 255);
     }
     if(digitalRead(R1BUTT) == LOW)
     {
